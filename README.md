@@ -4,3 +4,4 @@ vaikeuttaa myˆs se, ett‰ molempia l‰‰kkeit‰ on eri purkeissa eri annosm‰‰r‰. Ohj
 n‰kem‰‰n, paljonko annoksia on viel‰ j‰ljell‰ kummassakin l‰‰kkeess‰. Ohjelma toimii suomenkielell‰.
 
 Ohjelman ensimm‰inen versio tehty k‰ytt‰en CSV-tiedostoa annosten m‰‰r‰n laskemiseen. T‰ss‰ versiossa k‰ytet‰‰n tietokantaa ja Entity Frameworkia CSV-tiedoston sijaan.
+L‰hdekoodissa ei ole mukana app.config -tiedostoa, joka sis‰lt‰‰ tietokannan connection stringin.
