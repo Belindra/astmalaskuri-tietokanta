@@ -8,7 +8,7 @@ namespace Asthma_Calc
         {
             //Calculator calc1 = new Calculator();
             //calc1.Medicine();
-            CSV.ReadingDatabase();
+            Database.ReadingDatabase();
             Console.ReadKey();
         }
     }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Asthma_Calc
 {
-    class CSV
+    class Database
     {
         public static async Task ReadingDatabase()
         {
