@@ -3,5 +3,5 @@ Molemmat l‰‰kkeet ovat inhaloitavia, joten purkista ei n‰e p‰‰llep‰in, montako a
 vaikeuttaa myˆs se, ett‰ molempia l‰‰kkeit‰ on eri purkeissa eri annosm‰‰r‰. Ohjelmassa k‰ytt‰j‰ pystyy syˆtt‰m‰‰n jomman kumman tai molempien l‰‰kkeiden k‰yttˆm‰‰r‰n sek‰
 n‰kem‰‰n, paljonko annoksia on viel‰ j‰ljell‰ kummassakin l‰‰kkeess‰. Ohjelma toimii suomenkielell‰.
 
-Ohjelman ensimm‰inen versio tehty k‰ytt‰en CSV-tiedostoa annosten m‰‰r‰n laskemiseen. T‰ss‰ versiossa k‰ytet‰‰n tietokantaa ja Entity Frameworkia CSV-tiedoston sijaan.
+Ohjelman ensimm‰inen versio tehty k‰ytt‰en CSV-tiedostoa annosten m‰‰r‰n laskemiseen (lˆytyy Githubin repositoriosta nimelt‰ astmalaskuri). T‰ss‰ versiossa k‰ytet‰‰n tietokantaa ja Entity Frameworkia CSV-tiedoston sijaan.
 L‰hdekoodissa ei ole mukana app.config -tiedostoa, joka sis‰lt‰‰ tietokannan connection stringin.
