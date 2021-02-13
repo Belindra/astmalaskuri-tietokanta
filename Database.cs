@@ -10,42 +10,28 @@ namespace Asthma_Calc
 {
     class Database
     {
-        public static async Task ReadingDatabase()
+        public static List<MedicineInfo> ReadingDatabase(int medId)
         {
             var context = new MedicineContext();
-            var flixotide = await context.MedicineInfo
-                    .Where(f => f.MedicineId == 2)
-                    .ToListAsync();
+            var medicine = context.MedicineInfo
+                    .Where(f => f.MedicineId == medId)
+                    .ToList();
 
-            var ventoline = await context.MedicineInfo
-                    .Where(v => v.MedicineId == 3)
-                    .ToListAsync();
+            List<string> medicine2 = new List<string>();
 
-            foreach (var f in flixotide)
+            foreach (var m in medicine)
             {
-                Console.WriteLine(f.MedicineName);
-                Console.WriteLine(f.TotalPortion);
+                medicine2.Add(Convert.ToString(m.MedicineId));
+                medicine2.Add(Convert.ToString(m.MedicineName));
+                medicine2.Add(Convert.ToString(m.TotalPortion));
+                medicine2.Add(Convert.ToString(m.UsedPortion));
             }
-
-            foreach (var v in ventoline)
-            {
-                Console.WriteLine(v.MedicineName);
-                Console.WriteLine(v.TotalPortion);
-            }
-
-
-            //Console.WriteLine(ventoline);
+            Console.WriteLine(medicine2[1]);
+            Console.WriteLine(medicine2[2]);
+            return medicine;
         }
-        //public static string GetFlixotide()
-        //{
-        //    return "Flixotide";
-        //}
 
-        //public static string GetVentoline()
-        //{
-        //    return "Ventoline";
-        //}
-        //public static async Task WritingToDatabase()
+        //public static async Task SavingToDatabase()
         //{
         //    using (var context = new MedicineContext())
         //    {
