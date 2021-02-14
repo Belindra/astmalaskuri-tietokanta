@@ -26,8 +26,6 @@ namespace Asthma_Calc
                 medicine2.Add(Convert.ToString(m.TotalPortion));
                 medicine2.Add(Convert.ToString(m.UsedPortion));
             }
-            Console.WriteLine(medicine2[1]);
-            Console.WriteLine(medicine2[2]);
             return medicine;
         }
 

@@ -10,8 +10,8 @@ namespace Asthma_Calc
         public void Medicine()
         {
             Console.WriteLine("Lunan astmalääkelaskuri\n");
+            Console.WriteLine("Versio 2.1\n");
             var flixotide = Database.ReadingDatabase(2);
-            System.Threading.Thread.Sleep(1000);
             var ventoline = Database.ReadingDatabase(3);
 
             do
@@ -21,8 +21,8 @@ namespace Asthma_Calc
                 switch (choice)
                 {
                     case 1:
-                        int unusedvl = Convert.ToInt32(ventoline[3]) - Convert.ToInt32(ventoline[2]);
-                        int unusedfx = Convert.ToInt32(flixotide[3]) - Convert.ToInt32(flixotide[2]);
+                        int unusedvl = Convert.ToInt32(ventoline[0].TotalPortion) - Convert.ToInt32(ventoline[0].UsedPortion);
+                        int unusedfx = Convert.ToInt32(flixotide[0].TotalPortion) - Convert.ToInt32(flixotide[0].UsedPortion);
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write($"Flixotidea on jäljellä {unusedfx} annosta,");
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -49,9 +49,8 @@ namespace Asthma_Calc
                         {
                             if (portion == 1)
                             {
-                                flixotide[2].UsedPortion = Convert.ToInt32(flixotide[2]) + 1;
-                                usedportion[0] = usedportion[0] + 1;
-                                int unused = totalportion[0] - usedportion[0];
+                                flixotide[0].UsedPortion = Convert.ToInt32(flixotide[0].UsedPortion) + 1;
+                                int unused = flixotide[0].TotalPortion - flixotide[0].UsedPortion;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
@@ -60,8 +59,8 @@ namespace Asthma_Calc
 
                             else if (portion == 2)
                             {
-                                usedportion[0] = usedportion[0] + 2;
-                                int unused = totalportion[0] - usedportion[0];
+                                flixotide[0].UsedPortion = Convert.ToInt32(flixotide[0].UsedPortion) + 2;
+                                int unused = flixotide[0].TotalPortion - flixotide[0].UsedPortion;
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
@@ -75,8 +74,8 @@ namespace Asthma_Calc
                         {
                             if (portion == 1)
                             {
-                                usedportion[1] = usedportion[1] + 1;
-                                int unused = totalportion[1] - usedportion[1];
+                                ventoline[0].UsedPortion = Convert.ToInt32(ventoline[0].UsedPortion) + 1;
+                                int unused = ventoline[0].TotalPortion - ventoline[0].UsedPortion;
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
@@ -85,8 +84,8 @@ namespace Asthma_Calc
 
                             else if (portion == 2)
                             {
-                                usedportion[1] = usedportion[1] + 2;
-                                int unused = totalportion[1] - usedportion[1];
+                                ventoline[0].UsedPortion = Convert.ToInt32(ventoline[0].UsedPortion) + 2;
+                                int unused = ventoline[0].TotalPortion - ventoline[0].UsedPortion;
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
@@ -115,12 +114,12 @@ namespace Asthma_Calc
 
                         if (reset == 1)
                         {
-                            usedportion[0] = 0;
+                            flixotide[0].UsedPortion = 0;
                         }
 
                         else
                         {
-                            usedportion[1] = 0;
+                            ventoline[0].UsedPortion = 0;
                         }
                         break;
                     case 4:
@@ -133,7 +132,7 @@ namespace Asthma_Calc
                 }
             }
             while (exit == 0);
-            CSV.WritingCSV(totalportion, usedportion, strPath);
+            //CSV.WritingCSV(totalportion, usedportion, strPath);
         }
     }
 }
