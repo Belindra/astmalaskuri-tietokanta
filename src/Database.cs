@@ -17,19 +17,10 @@ namespace Asthma_Calc
                     .Where(f => f.MedicineId == medId)
                     .ToList();
 
-            List<string> medicine2 = new List<string>();
-
-            foreach (var m in medicine)
-            {
-                medicine2.Add(Convert.ToString(m.MedicineId));
-                medicine2.Add(Convert.ToString(m.MedicineName));
-                medicine2.Add(Convert.ToString(m.TotalPortion));
-                medicine2.Add(Convert.ToString(m.UsedPortion));
-            }
             return medicine;
         }
 
-        //public static async Task SavingToDatabase()
+        //public static SavingToDatabase()
         //{
         //    using (var context = new MedicineContext())
         //    {

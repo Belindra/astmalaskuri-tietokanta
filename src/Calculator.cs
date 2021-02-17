@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asthma_Calc
 {
@@ -11,6 +15,14 @@ namespace Asthma_Calc
         {
             Console.WriteLine("Lunan astmalääkelaskuri\n");
             Console.WriteLine("Versio 2.1\n");
+
+            //using (var context2 = new MedicineContext())
+            //{
+            //    var lastEvent = new EventInfo()
+            //        .Where(m => m.Date == m.Date.Max)
+            //        .ToList();
+            //}
+
             var flixotide = Database.ReadingDatabase(2);
             var ventoline = Database.ReadingDatabase(3);
 
@@ -55,6 +67,18 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
+                                using (var context = new MedicineContext())
+                                {
+                                    var medEventEntry = new EventInfo()
+                                    {
+                                        MedicineId = flixotide[0].MedicineId,
+                                        UsedPortionNow = portion,
+                                        Date = DateTime.Now
+                                    };
+
+                                    context.EventInfo.Add(medEventEntry);
+                                    context.SaveChanges();
+                                }
                             }
 
                             else if (portion == 2)
@@ -64,6 +88,19 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+
+                                using (var context = new MedicineContext())
+                                {
+                                    var medEventEntry = new EventInfo()
+                                    {
+                                        MedicineId = flixotide[0].MedicineId,
+                                        UsedPortionNow = portion,
+                                        Date = DateTime.Now
+                                    };
+
+                                    context.EventInfo.Add(medEventEntry);
+                                    context.SaveChanges();
+                                }
                             }
 
                             else
@@ -80,6 +117,19 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
+                                using (var context = new MedicineContext())
+                                {
+                                    var medEventEntry = new EventInfo()
+                                    {
+                                        MedicineId = ventoline[0].MedicineId,
+                                        UsedPortionNow = portion,
+                                        Date = DateTime.Now
+                                    };
+
+                                    context.EventInfo.Add(medEventEntry);
+                                    context.SaveChanges();
+                                }
+
                             }
 
                             else if (portion == 2)
@@ -89,6 +139,19 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+
+                                using (var context = new MedicineContext())
+                                {
+                                    var medEventEntry = new EventInfo()
+                                    {
+                                        MedicineId = ventoline[0].MedicineId,
+                                        UsedPortionNow = portion,
+                                        Date = DateTime.Now
+                                    };
+
+                                    context.EventInfo.Add(medEventEntry);
+                                    context.SaveChanges();
+                                }
                             }
 
                             else
@@ -132,7 +195,7 @@ namespace Asthma_Calc
                 }
             }
             while (exit == 0);
-            //CSV.WritingCSV(totalportion, usedportion, strPath);
+            //Database.SavingToDatabase();
         }
     }
 }
