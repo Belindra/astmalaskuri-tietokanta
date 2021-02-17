@@ -15,13 +15,9 @@ namespace Asthma_Calc
         {
             Console.WriteLine("Lunan astmalääkelaskuri\n");
             Console.WriteLine("Versio 2.1\n");
-
-            //using (var context2 = new MedicineContext())
-            //{
-            //    var lastEvent = new EventInfo()
-            //        .Where(m => m.Date == m.Date.Max)
-            //        .ToList();
-            //}
+            Database.GettingDate(2);
+            Database.GettingDate(3);
+            Console.Write("\n");
 
             var flixotide = Database.ReadingDatabase(2);
             var ventoline = Database.ReadingDatabase(3);
