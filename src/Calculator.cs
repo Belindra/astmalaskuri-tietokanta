@@ -13,10 +13,9 @@ namespace Asthma_Calc
         int exit = 0;
         public void Medicine()
         {
-            Console.WriteLine("Lunan astmalääkelaskuri\n");
-            Console.WriteLine("Versio 2.1\n");
-            Database.GettingDate(2);
-            Database.GettingDate(3);
+            Console.WriteLine("Lunan astmalääkelaskuri versio 2.0\n");
+            Console.WriteLine("Flixotidea kirjattu viimeksi " + Database.GettingDate(2));
+             Console.WriteLine("Ventolinea kirjattu viimeksi " + Database.GettingDate(3));
             Console.Write("\n");
 
             var flixotide = Database.ReadingDatabase(2);
@@ -63,18 +62,7 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
-                                using (var context = new MedicineContext())
-                                {
-                                    var medEventEntry = new EventInfo()
-                                    {
-                                        MedicineId = flixotide[0].MedicineId,
-                                        UsedPortionNow = portion,
-                                        Date = DateTime.Now
-                                    };
-
-                                    context.EventInfo.Add(medEventEntry);
-                                    context.SaveChanges();
-                                }
+                                Database.SavingFlixotide(flixotide, portion);
                             }
 
                             else if (portion == 2)
@@ -85,18 +73,7 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
-                                using (var context = new MedicineContext())
-                                {
-                                    var medEventEntry = new EventInfo()
-                                    {
-                                        MedicineId = flixotide[0].MedicineId,
-                                        UsedPortionNow = portion,
-                                        Date = DateTime.Now
-                                    };
-
-                                    context.EventInfo.Add(medEventEntry);
-                                    context.SaveChanges();
-                                }
+                                Database.SavingFlixotide(flixotide, portion);
                             }
 
                             else
@@ -113,18 +90,7 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
-                                using (var context = new MedicineContext())
-                                {
-                                    var medEventEntry = new EventInfo()
-                                    {
-                                        MedicineId = ventoline[0].MedicineId,
-                                        UsedPortionNow = portion,
-                                        Date = DateTime.Now
-                                    };
-
-                                    context.EventInfo.Add(medEventEntry);
-                                    context.SaveChanges();
-                                }
+                                Database.SavingVentoline(ventoline, portion);
 
                             }
 
@@ -136,18 +102,7 @@ namespace Asthma_Calc
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
 
-                                using (var context = new MedicineContext())
-                                {
-                                    var medEventEntry = new EventInfo()
-                                    {
-                                        MedicineId = ventoline[0].MedicineId,
-                                        UsedPortionNow = portion,
-                                        Date = DateTime.Now
-                                    };
-
-                                    context.EventInfo.Add(medEventEntry);
-                                    context.SaveChanges();
-                                }
+                                Database.SavingVentoline(ventoline, portion);
                             }
 
                             else

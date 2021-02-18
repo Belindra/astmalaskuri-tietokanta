@@ -20,20 +20,50 @@ namespace Asthma_Calc
             return medicine;
         }
 
-        public static List<EventInfo> GettingDate(int medId)
+        public static string  GettingDate(int medId)
         {
             var context = new MedicineContext();
             var time = context.EventInfo
                 .Where(t => t.MedicineId == medId)
-                .ToList();       
+                .ToList();
 
-            foreach (var item in time)
-            {
-                Console.WriteLine(item.Date);
-            }
-            return time;
+            var medEntryTime = Convert.ToString(time[time.Count - 1].Date);
+            return medEntryTime;
         }
-        
+
+        public static void SavingFlixotide(List<MedicineInfo> flixotide, int portion)
+        {
+            using (var context = new MedicineContext())
+            {
+                var medEventEntry = new EventInfo()
+                {
+                    MedicineId = flixotide[0].MedicineId,
+                    UsedPortionNow = portion,
+                    Date = DateTime.Now
+                };
+
+                context.EventInfo.Add(medEventEntry);
+                context.SaveChanges();
+            }
+        }
+
+
+        public static void SavingVentoline(List<MedicineInfo> ventoline, int portion)
+        {
+            using (var context = new MedicineContext())
+            {
+                var medEventEntry = new EventInfo()
+                {
+                    MedicineId = ventoline[0].MedicineId,
+                    UsedPortionNow = portion,
+                    Date = DateTime.Now
+                };
+
+                context.EventInfo.Add(medEventEntry);
+                context.SaveChanges();
+            }
+        }
+
 
         //public static SavingToDatabase()
         //{
