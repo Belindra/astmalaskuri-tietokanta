@@ -20,11 +20,11 @@ namespace Asthma_Calc
             Console.Write("\n");
 
             var flixotide =  context.MedicineInfo
-                    .Where(f => f.MedicineId == 2)
+                    .Where(f => f.MedicineName == "Flixotide")
                     .ToList();
 
             var ventoline = context.MedicineInfo
-                    .Where(f => f.MedicineId == 3)
+                    .Where(f => f.MedicineName == "Ventoline")
                     .ToList();
 
             do
