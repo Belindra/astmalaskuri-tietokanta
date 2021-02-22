@@ -9,17 +9,23 @@ using Microsoft.EntityFrameworkCore;
 namespace Asthma_Calc
 {
     class Calculator
-    {
+    {   
         int exit = 0;
         public void Medicine()
         {
+            var context = new MedicineContext();
             Console.WriteLine("Lunan astmalääkelaskuri versio 2.0\n");
             Console.WriteLine("Flixotidea kirjattu viimeksi " + Database.GettingDate(2));
-             Console.WriteLine("Ventolinea kirjattu viimeksi " + Database.GettingDate(3));
+            Console.WriteLine("Ventolinea kirjattu viimeksi " + Database.GettingDate(3));
             Console.Write("\n");
 
-            var flixotide = Database.ReadingDatabase(2);
-            var ventoline = Database.ReadingDatabase(3);
+            var flixotide =  context.MedicineInfo
+                    .Where(f => f.MedicineId == 2)
+                    .ToList();
+
+            var ventoline = context.MedicineInfo
+                    .Where(f => f.MedicineId == 3)
+                    .ToList();
 
             do
             {
@@ -61,8 +67,10 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+                                context.SaveChanges();
 
                                 Database.SavingFlixotide(flixotide, portion);
+
                             }
 
                             else if (portion == 2)
@@ -72,6 +80,7 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine($"Flixotidea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+                                context.SaveChanges();
 
                                 Database.SavingFlixotide(flixotide, portion);
                             }
@@ -89,6 +98,7 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+                                context.SaveChanges();
 
                                 Database.SavingVentoline(ventoline, portion);
 
@@ -101,6 +111,7 @@ namespace Asthma_Calc
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine($"Ventolinea on jäljellä {unused} annosta\n");
                                 Console.ResetColor();
+                                context.SaveChanges();
 
                                 Database.SavingVentoline(ventoline, portion);
                             }
@@ -129,11 +140,13 @@ namespace Asthma_Calc
                         if (reset == 1)
                         {
                             flixotide[0].UsedPortion = 0;
+                            context.SaveChanges();
                         }
 
                         else
                         {
                             ventoline[0].UsedPortion = 0;
+                            context.SaveChanges();
                         }
                         break;
                     case 4:
@@ -146,7 +159,6 @@ namespace Asthma_Calc
                 }
             }
             while (exit == 0);
-            //Database.SavingToDatabase();
         }
     }
 }

@@ -10,17 +10,7 @@ namespace Asthma_Calc
 {
     class Database
     {
-        public static List<MedicineInfo> ReadingDatabase(int medId)
-        {
-            var context = new MedicineContext();
-            var medicine = context.MedicineInfo
-                    .Where(f => f.MedicineId == medId)
-                    .ToList();
-
-            return medicine;
-        }
-
-        public static string  GettingDate(int medId)
+        public static string GettingDate(int medId)
         {
             var context = new MedicineContext();
             var time = context.EventInfo
@@ -47,7 +37,6 @@ namespace Asthma_Calc
             }
         }
 
-
         public static void SavingVentoline(List<MedicineInfo> ventoline, int portion)
         {
             using (var context = new MedicineContext())
@@ -63,17 +52,5 @@ namespace Asthma_Calc
                 context.SaveChanges();
             }
         }
-
-
-        //public static SavingToDatabase()
-        //{
-        //    using (var context = new MedicineContext())
-        //    {
-        //        var medicineInfoEntry = new MedicineInfo()
-        //        {
-
-        //        };
-        //    }
-        //}
     }
 }
